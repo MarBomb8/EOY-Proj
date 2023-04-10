@@ -9,6 +9,34 @@ public class Chars {
     private int h;
     private ImageIcon img;
 
+    public Chars() {
+		x= 1;
+		y = 1;
+		w = 1;
+		h = 1;
+		img = new ImageIcon("");
+		dx = 0;
+		dy = 0;
+	}
+	public Chars(int xV, int yV, int width, int height, ImageIcon i) {
+		x = xV;
+		y= yV;
+		w = width;
+		h = height;
+		img = i;
+		dx = 1;
+		dy = 2;
+	}
+	public Chars(int xV, int yV, ImageIcon i) {
+		x = xV;
+		y= yV;
+		w = 30;
+		h = 30;
+		img = i;
+		dx = 0;
+		dy = -4;
+	}
+
     
 
     public ImageIcon getImg() {
