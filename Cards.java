@@ -8,7 +8,7 @@ public class Cards extends Chars{
     }
 
     	public Cards(int x, int y) {
-		super(x, y, 60, 40, new ImageIcon(""));
+		super(x, y, 60, 40, new ImageIcon("RC.gif"));
         }
 
 
