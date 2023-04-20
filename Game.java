@@ -11,6 +11,8 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	private BufferedImage back; 
 	private int key; 
 	private ImageIcon background;
+    private Long Time, startTime, startTime2, currentTime, lvlTimer;
+    private int screen;
 	
 	public Game() {
 		new Thread(this).start();	
@@ -18,7 +20,11 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		key =-1; 
 		background = new ImageIcon ("");
 		background = new ImageIcon ("Loadbg.gif");
-	
+        startTime = System.currentTimeMillis();
+		startTime2 = System.currentTimeMillis();
+        screen = 1;
+        currentTime = System.currentTimeMillis()/1000;
+        lvlTimer = System.currentTimeMillis();
 	}
 
 	
@@ -55,15 +61,25 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		
 		g2d.setFont( new Font("Broadway", Font.BOLD, 50));
 		
-		
+		g2d.setColor(Color.white);
+
+       
+
 		g2d.drawImage(background.getImage(), 0,0, getWidth(), getHeight(), this);
+        g2d.drawString("" + timer(), 50, 10);
+		if (screen == 1 && timer()>= 11){
+            background = new ImageIcon("boss bg.png");
+            screen = 2;
+        }
+        if (screen == 2 && timer()>= 15){
+            background = new ImageIcon("terrain.png");
+            screen = 3;
+        }
+		
+		
 
 		
 		
-		
-
-		
-		g2d.setColor(Color.black);
 		
 		
 		
@@ -78,6 +94,11 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 
 
 
+private long timer() {
+    startTime = (System.currentTimeMillis()/1000)-currentTime;
+    //System.out.println(startTime);
+    return startTime; 
+}
 
 
 
