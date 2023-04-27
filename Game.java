@@ -185,6 +185,9 @@ private long timer() {
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
         System.out.println("ysure");
+		if(screen == 2 && x>=34 && x<=218 && y>=202 && y<=280) {
+		screen = 3;
+	}
 	}
 
 
