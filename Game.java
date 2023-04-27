@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.awt.event.*; 
 
 
+import javax.swing.ImageIcon;
+
 public class Game  extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener{
 
 	
@@ -96,9 +98,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 }
 
-public void wordColl(){
-    Rectangle box = new Rectangle(b.getX(), b.getY(), b.getW(), b.getH());
-}
+
 
 
 private long timer() {
