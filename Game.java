@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.event.*; 
 
 
-public class Game  extends JPanel implements Runnable, KeyListener{
+public class Game  extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener{
 
 	
 	private BufferedImage back; 
@@ -17,6 +17,10 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 	public Game() {
 		new Thread(this).start();	
 		this.addKeyListener(this);
+		new Thread(this).start();	
+		this.addKeyListener(this);
+		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 		key =-1; 
 		background = new ImageIcon ("");
 		background = new ImageIcon ("Loadbg.gif");
@@ -71,8 +75,8 @@ public class Game  extends JPanel implements Runnable, KeyListener{
             background = new ImageIcon("boss bg.png");
             screen = 2;
         }
-        if (screen == 2 && timer()>= 15){
-            background = new ImageIcon("terrain.png");
+        if (screen == 2 ){
+            background = new ImageIcon("level select.png");
             screen = 3;
         }
 		
@@ -92,6 +96,9 @@ public class Game  extends JPanel implements Runnable, KeyListener{
 		
 }
 
+public void wordColl(){
+    Rectangle box = new Rectangle(b.getX(), b.getY(), b.getW(), b.getH());
+}
 
 
 private long timer() {
@@ -135,5 +142,57 @@ private long timer() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
+    public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+        System.out.println("ysure");
+	}
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
