@@ -11,6 +11,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 	
 	private BufferedImage back; 
+	private Mouse mousep;
 	private int key; 
 	private ImageIcon background;
     private Long Time, startTime, startTime2, currentTime, lvlTimer;
@@ -31,6 +32,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         screen = 1;
         currentTime = System.currentTimeMillis()/1000;
         lvlTimer = System.currentTimeMillis();
+		mousep = new Mouse(1,1,1,1);
 	}
 
 	
@@ -79,8 +81,10 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         }
         if (screen == 2 ){
             background = new ImageIcon("level select.png");
-            screen = 3;
         }
+		if(screen ==3){
+			background = new ImageIcon("terrain.png");
+		}
 		
 		
 
@@ -152,7 +156,8 @@ private long timer() {
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		mousep.setX(arg0.getX());
+		mousep.setY(arg0.getY());
 	}
 
 
@@ -185,7 +190,10 @@ private long timer() {
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
         System.out.println("ysure");
-		if(screen == 2 && x>=34 && x<=218 && y>=202 && y<=280) {
+		if(screen == 2 && mousep.getX()>=34 && mousep.getX()<=218 && mousep.getY()>=202 && mousep.getY()<=280) {
+		screen = 3;
+	}
+	if(screen == 2 && mousep.getX()>=34 && mousep.getX()<=222 && mousep.getY()>=436 && mousep.getY()<=516) {
 		screen = 3;
 	}
 	}
