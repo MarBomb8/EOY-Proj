@@ -73,13 +73,12 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 		g2d.drawImage(background.getImage(), 0,0, getWidth(), getHeight(), this);
         g2d.drawString("" + timer(), 50, 10);
-		if (screen == 1 && timer()>= 11){
+		if (screen == 1 && timer()>= 1){
             background = new ImageIcon("boss bg.png");
             screen = 2;
         }
         if (screen == 2 ){
             background = new ImageIcon("level select.png");
-            screen = 3;
         }
 		
 		
