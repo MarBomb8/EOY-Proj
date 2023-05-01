@@ -13,8 +13,9 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private BufferedImage back; 
 	private Mouse mousep;
 	private int key; 
+	private MC mainchar;
 	private ImageIcon background;
-    private Long Time, startTime, startTime2, currentTime, lvlTimer;
+    private Long Time, startTime, startTime2, currentTime, lvlTimer, jumptimer;
     private int screen;
 	
 	public Game() {
@@ -29,10 +30,12 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		background = new ImageIcon ("Loadbg.gif");
         startTime = System.currentTimeMillis();
 		startTime2 = System.currentTimeMillis();
+		jumptimer = System.currentTimeMillis();
         screen = 1;
         currentTime = System.currentTimeMillis()/1000;
         lvlTimer = System.currentTimeMillis();
 		mousep = new Mouse(1,1,1,1);
+		mainchar = new MC(200,300); 
 	}
 
 	
@@ -74,8 +77,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
        
 
 		g2d.drawImage(background.getImage(), 0,0, getWidth(), getHeight(), this);
-        g2d.drawString("" + timer(), 50, 10);
-		if (screen == 1 && timer()>= 1){
+        //g2d.drawString("" + timer(), 50, 10);
+		if (screen == 1 && timer()>= 11){
             background = new ImageIcon("boss bg.png");
             screen = 2;
         }
@@ -84,6 +87,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         }
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
+			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 100, 100, this);
 		}
 		
 		
@@ -130,7 +134,16 @@ private long timer() {
 		
 		key= e.getKeyCode();
 		System.out.println(key);
-		
+		if(e.getKeyCode() ==68) {
+			mainchar.setX(mainchar.getX()+10);
+		}
+		if(e.getKeyCode()==65) {
+			mainchar.setX(mainchar.getX()-10);
+		}
+		if(e.getKeyCode()==32) {
+			mainchar.setY(mainchar.getY()+10);
+			jumptimer = timer()*0;
+		}
 	
 	//test
 
