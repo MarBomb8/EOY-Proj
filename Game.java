@@ -141,8 +141,12 @@ private long timer() {
 			mainchar.setX(mainchar.getX()-10);
 		}
 		if(e.getKeyCode()==32) {
-			mainchar.setY(mainchar.getY()+10);
-			jumptimer = timer()*0;
+			mainchar.setY(mainchar.getY()-10);
+			jumptimer = (System.currentTimeMillis()/1000)-currentTime;
+			if(jumptimer == 1){
+				mainchar.setY(mainchar.getY()+10);
+				jumptimer = timer()*0;
+			}
 		}
 	
 	//test
