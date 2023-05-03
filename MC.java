@@ -9,7 +9,7 @@ public class MC extends Chars{
     }
 
     	public MC(int x, int y) {
-		super(x, y, 60, 40, new ImageIcon("RonGif.gif"));
+		super(x, y, 60, 40, new ImageIcon("messi.gif"));
         }
 
 

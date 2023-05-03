@@ -1,7 +1,8 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage; 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.event.*; 
 
 
@@ -17,7 +18,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private ImageIcon background;
     private Long Time, startTime, startTime2, currentTime, lvlTimer, jumptimer;
     private int screen;
-	
+	private ArrayList<Cards> cards;
 	public Game() {
 		new Thread(this).start();	
 		this.addKeyListener(this);
@@ -38,8 +39,13 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		mainchar = new MC(200,300); 
 	}
 
-	
-	
+	private ArrayList<Cards> setCards() {
+		// TODO Auto-generated method stub
+		ArrayList <Cards> temp = new ArrayList();
+			
+	}
+		
+		
 	public void run()
 	   {
 	   	try
