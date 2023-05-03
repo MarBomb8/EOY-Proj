@@ -17,6 +17,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private ImageIcon background;
     private Long Time, startTime, startTime2, currentTime, lvlTimer, jumptimer;
     private int screen;
+	private boolean jump,checkjump;
 	
 	public Game() {
 		new Thread(this).start();	
@@ -30,6 +31,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		background = new ImageIcon ("Loadbg.gif");
         startTime = System.currentTimeMillis();
 		startTime2 = System.currentTimeMillis();
+		jump = false;
+		checkjump = false; 
 		jumptimer = System.currentTimeMillis();
         screen = 1;
         currentTime = System.currentTimeMillis()/1000;
@@ -78,7 +81,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 
 		g2d.drawImage(background.getImage(), 0,0, getWidth(), getHeight(), this);
         //g2d.drawString("" + timer(), 50, 10);
-		if (screen == 1 && timer()>= 11){
+		if (screen == 1 && timer()>= 1){
             background = new ImageIcon("boss bg.png");
             screen = 2;
         }
@@ -88,7 +91,29 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 100, 100, this);
+
+			if(jump){
+				jumptimer = (long)0;
+				System.out.println(jumptimer);
+				mainchar.setY(mainchar.getY()-50);
+				jump=false;
+				checkjump = true;
+				
+				
+			}
+			if(checkjump){ 
+				jumptimer++;
+				if(jumptimer >= 50)     {
+					System.out.println(jump);
+					mainchar.setY(mainchar.getY()+50);
+					jump = false;
+					System.out.println(jumptimer);
+					checkjump = false;
+
 		}
+			}
+			
+	}
 		
 		
 
@@ -96,7 +121,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		
 		
-		
+		System.out.println(jumptimer);
 		twoDgraph.drawImage(back, null, 0, 0);
 		
 		
@@ -141,12 +166,14 @@ private long timer() {
 			mainchar.setX(mainchar.getX()-10);
 		}
 		if(e.getKeyCode()==32) {
-			mainchar.setY(mainchar.getY()-10);
-			jumptimer = (System.currentTimeMillis()/1000)-currentTime;
-			if(jumptimer == 1){
-				mainchar.setY(mainchar.getY()+10);
-				jumptimer = timer()*0;
+			
+			System.out.println("jumping");
+			if(!jump&& !checkjump){
+				jump = true;
+			
 			}
+		}
+			
 		}
 	
 	//test
@@ -154,14 +181,14 @@ private long timer() {
 
 	//DO NOT DELETE
 	
-}
+
 
 
 
     @Override
     public void keyReleased(KeyEvent e) {
+
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
     public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
