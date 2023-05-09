@@ -23,11 +23,11 @@ public class wbs {
 		h = 1;
 		img = new ImageIcon("WB.png");
 	}
-	public wbs(int xV, int yV) {
+	public wbs(int xV, int yV, int wV, int hV) {
 		x = 900;
 		y= yV;
-		w = 100;
-		h = 100;
+		w = wV;
+		h = hV;
 		img = new ImageIcon("WB.png");
 	}
     public int getX() {
