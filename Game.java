@@ -42,9 +42,12 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private ArrayList<Cards> setCards() {
 		// TODO Auto-generated method stub
 		ArrayList <Cards> temp = new ArrayList();
-			
-	}
-		
+			//temp.add ImageIcon("YC.gif");
+			//temp.add ImageIcon("RC.gif");
+	
+			return temp;
+		}
+
 		
 	public void run()
 	   {
