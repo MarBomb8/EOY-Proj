@@ -93,11 +93,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
-			g2d.drawImage(WB.getImg().getImage(), 50, 360 this);
+			g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
 			if(jump){
 				jumptimer = (long)0;
 				System.out.println(jumptimer);
-				mainchar.setY(mainchar.getY()-50);
+				mainchar.setY(mainchar.getY()-70);
 				jump=false;
 				checkjump = true;
 				
@@ -108,7 +108,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 				jumptimer++;
 				if(jumptimer >= 100)     {
 					System.out.println(jump);
-					mainchar.setY(mainchar.getY()+50);
+					mainchar.setY(mainchar.getY()+7 0);
 					jump = false;
 					System.out.println(jumptimer);
 					checkjump = false;
