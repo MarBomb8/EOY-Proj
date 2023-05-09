@@ -1,7 +1,8 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage; 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.event.*; 
 
 
@@ -18,6 +19,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
     private Long Time, startTime, startTime2, currentTime, lvlTimer, jumptimer;
     private int screen;
 	private boolean jump,checkjump;
+	private ArrayList<wbs> waterbottles;
 	
 	public Game() {
 		new Thread(this).start();	
@@ -41,8 +43,23 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		mainchar = new MC(200,300); 
 	}
 
-	
-	
+	private ArrayList<Cards> setCards() {
+		// TODO Auto-generated method stub
+		ArrayList <Cards> temp = new ArrayList();
+		return temp;
+			
+	}
+	private ArrayList<wbs> waterbottles(){
+		
+		ArrayList<wbs> temp = new ArrayList();
+		for (int i=0; i<6; i++) {
+			temp.add(new wbs(i*150, i));
+	}
+		return temp;
+
+	}
+		
+		
 	public void run()
 	   {
 	   	try
@@ -90,8 +107,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         }
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
-			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 100, 100, this);
-
+			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
+			wbsdraw(g2d);
 			if(jump){
 				jumptimer = (long)0;
 				System.out.println(jumptimer);
@@ -103,7 +120,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 			}
 			if(checkjump){ 
 				jumptimer++;
-				if(jumptimer >= 50)     {
+				if(jumptimer >= 100)     {
 					System.out.println(jump);
 					mainchar.setY(mainchar.getY()+50);
 					jump = false;
@@ -138,6 +155,11 @@ private long timer() {
     startTime = (System.currentTimeMillis()/1000)-currentTime;
     //System.out.println(startTime);
     return startTime; 
+}
+private void wbsdraw(Graphics g2d){
+	for(wbs pm: waterbottles) {
+		g2d.drawImage(pm.ImageIcon().getImage(),pm.getX(),pm.getY(),pm.getW(),pm.getH(),this);
+	}
 }
 
 
