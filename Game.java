@@ -41,27 +41,10 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         lvlTimer = System.currentTimeMillis();
 		mousep = new Mouse(1,1,1,1);
 		mainchar = new MC(200,300); 
-		WB = new wbs(-100,-100);
+		WB = new wbs(-100,-100,500, 500);
 	}
 
-	private ArrayList<Cards> setCards() {
-		// TODO Auto-generated method stub
-		ArrayList <Cards> temp = new ArrayList();
-<<<<<<< HEAD
-			//temp.add ImageIcon("YC.gif");
-			//temp.add ImageIcon("RC.gif");
-	
-			return temp;
-		}
 
-=======
-		return temp;
-			
-	}
-	
-		
->>>>>>> c6e53e7328feafd7d4bbcd5a211bd9f85a042148
-		
 	public void run()
 	   {
 	   	try
@@ -110,12 +93,14 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
+			g2d.drawImage(WB.getImg().getImage(), 50, 360 this);
 			if(jump){
 				jumptimer = (long)0;
 				System.out.println(jumptimer);
 				mainchar.setY(mainchar.getY()-50);
 				jump=false;
 				checkjump = true;
+				
 				
 				
 			}
