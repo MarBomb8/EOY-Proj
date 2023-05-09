@@ -94,29 +94,41 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
 			g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
+			g2d.drawImage(WB.getImg().getImage(), 400, 300, 300, 300, this);
 			if(jump){
 				jumptimer = (long)0;
 				System.out.println(jumptimer);
 				mainchar.setY(mainchar.getY()-70);
 				jump=false;
 				checkjump = true;
+			}
+		}
 				
-				
+			if(screen ==4){
+				background = new ImageIcon("portugal.png");
+				g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
+				g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
+				g2d.drawImage(WB.getImg().getImage(), 400, 300, 300, 300, this);
+				if(jump){
+					jumptimer = (long)0;
+					System.out.println(jumptimer);
+					mainchar.setY(mainchar.getY()-70);
+					jump=false;
+					checkjump = true;	
 				
 			}
 			if(checkjump){ 
 				jumptimer++;
 				if(jumptimer >= 100)     {
 					System.out.println(jump);
-					mainchar.setY(mainchar.getY()+7 0);
+					mainchar.setY(mainchar.getY()+70);
 					jump = false;
 					System.out.println(jumptimer);
 					checkjump = false;
 
 		}
 			}
-			
-	}
+		}
 		
 		
 
@@ -126,7 +138,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		System.out.println(jumptimer);
 		twoDgraph.drawImage(back, null, 0, 0);
-		
+
 		
 		
 		
@@ -171,10 +183,13 @@ private long timer() {
 			if(!jump&& !checkjump){
 				jump = true;
 			
-			}
-		}
+			
+		
+	
 			
 		}
+	}
+	}
 	
 	//test
 
@@ -238,9 +253,10 @@ private long timer() {
 		screen = 3;
 	}
 	if(screen == 2 && mousep.getX()>=34 && mousep.getX()<=222 && mousep.getY()>=436 && mousep.getY()<=516) {
-		screen = 3;
+		screen = 4;
 	}
-	}
+	
+}
 
 
 
