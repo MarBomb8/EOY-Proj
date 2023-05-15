@@ -18,7 +18,7 @@ public class Chars {
 		dx = 0;
 		dy = 0;
 	}
-	public Chars(int xV, int yV, int width, int height, ImageIcon i) {
+	public Chars(int xV, int yV, int width, int height, int dx, ImageIcon i) {
 		x = xV;
 		y= yV;
 		w = width;
@@ -27,7 +27,7 @@ public class Chars {
 		dx = 1;
 		dy = 2;
 	}
-	public Chars(int xV, int yV, ImageIcon i) {
+	public Chars(int xV, int yV, int wV, int hV, ImageIcon i) {
 		x = xV;
 		y= yV;
 		w = 30;
