@@ -1,3 +1,5 @@
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
 
 public class Chars {
@@ -94,6 +96,27 @@ public class Chars {
 
     public void setH(int h) {
         this.h = h;
+    }
+    public boolean collision(wbs wa){
+      Rectangle water= new Rectangle(wa.getX(), wa.getY(), wa.getW(), wa.getH());
+       Rectangle player= new Rectangle(x,y,w,h);
+
+       if(water.intersects(player)){
+       if(wa.getX() <= x+w && wa.getX()>=x){
+        setX(wa.getX()-1-w);
+    
+        return true;
+       }
+       else if(wa.getX() <=x){
+        setX(wa.getX()+wa.getW()+1);
+  
+
+         return true;
+       }
+
+
+    }
+       return false;
     }
 
 }
