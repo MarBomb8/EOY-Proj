@@ -1,4 +1,5 @@
 
+import javax.lang.model.util.ElementScanner6;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -40,8 +41,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         currentTime = System.currentTimeMillis()/1000;
         lvlTimer = System.currentTimeMillis();
 		mousep = new Mouse(1,1,1,1);
-		mainchar = new MC(200,300); 
-		WB = new wbs(-100,-100,500, 500);
+		mainchar = new MC(300,300); 
+		WB = new wbs(50,200,200, 200);
 	}
 
 
@@ -93,10 +94,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
-			g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
+			g2d.drawImage(WB.getImg().getImage(), WB.getX(), WB.getY(), WB.getW(), WB.getH(), this);
+			
 			if(jump){
 				jumptimer = (long)0;
-				System.out.println(jumptimer);
+				//System.out.println(jumptimer);
 				mainchar.setY(mainchar.getY()-70);
 				jump=false;
 				checkjump = true;
@@ -107,10 +109,10 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 			if(checkjump){ 
 				jumptimer++;
 				if(jumptimer >= 100)     {
-					System.out.println(jump);
-					mainchar.setY(mainchar.getY()+7 0);
+					//System.out.println(jump);
+					mainchar.setY(mainchar.getY()+70);
 					jump = false;
-					System.out.println(jumptimer);
+					//System.out.println(jumptimer);
 					checkjump = false;
 
 		}
@@ -124,7 +126,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		
 		
-		System.out.println(jumptimer);
+		//System.out.println(jumptimer);
 		twoDgraph.drawImage(back, null, 0, 0);
 		
 		
@@ -133,7 +135,6 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 		
 }
-
 
 
 
@@ -150,8 +151,6 @@ private long timer() {
 	}
 
 
-
-
 //DO NOT DELETE
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -160,10 +159,22 @@ private long timer() {
 		key= e.getKeyCode();
 		System.out.println(key);
 		if(e.getKeyCode() ==68) {
+			if(!mainchar.collision(WB))
 			mainchar.setX(mainchar.getX()+10);
+			// else if(mainchar.getX()+mainchar.getW()>= WB.getX()+WB.getW())
+			// mainchar.setX(mainchar.getX()+10);
+			// else
+			// mainchar.setX(mainchar.getX()-1);
+
+
 		}
 		if(e.getKeyCode()==65) {
+			if(!mainchar.collision(WB))
 			mainchar.setX(mainchar.getX()-10);
+			// else if(mainchar.getX()<= WB.getX()+WB.getW())
+			// mainchar.setX(mainchar.getX()-10);
+			// else
+			// mainchar.setX(mainchar.getX()+1);
 		}
 		if(e.getKeyCode()==32) {
 			

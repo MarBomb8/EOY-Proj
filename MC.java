@@ -1,5 +1,7 @@
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+
 
 public class MC extends Chars{
     
@@ -21,10 +23,12 @@ public class MC extends Chars{
             return null;
         }
 
+       
+           
+            }
 
 
 
-}
 
 
 

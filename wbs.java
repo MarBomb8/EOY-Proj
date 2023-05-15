@@ -36,7 +36,7 @@ public class wbs {
 		img = new ImageIcon("WB.png");
 	}
 	public wbs(int xV, int yV, int wV, int hV) {
-		x = 900;
+		x = xV;
 		y= yV;
 		w = wV;
 		h = hV;
