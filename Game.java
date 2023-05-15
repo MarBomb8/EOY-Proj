@@ -14,12 +14,13 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private BufferedImage back; 
 	private Mouse mousep;
 	private int key; 
-	private MC mainchar;
+	private MC mainchar, mbappe, ron;
 	private ImageIcon background;
     private Long Time, startTime, startTime2, currentTime, lvlTimer, jumptimer;
     private int screen;
 	private boolean jump,checkjump;
 	private wbs WB;
+	private red RC;
 	
 	public Game() {
 		new Thread(this).start();	
@@ -36,12 +37,15 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		jump = false;
 		checkjump = false; 
 		jumptimer = System.currentTimeMillis();
-        screen = 1;
+        screen = 4;
         currentTime = System.currentTimeMillis()/1000;
         lvlTimer = System.currentTimeMillis();
 		mousep = new Mouse(1,1,1,1);
 		mainchar = new MC(200,300); 
 		WB = new wbs(-100,-100,500, 500);
+		mbappe = new MC(600, 270, 1, new ImageIcon("Mbappe.gif"));
+		ron = new MC(450, 330, 1, new ImageIcon("RonGif.gif"));
+		RC = new red(300, 300); 
 	}
 
 
@@ -93,6 +97,8 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
+			g2d.drawImage(mbappe.getImg().getImage(), mbappe.getX(), mbappe.getY(),100, 130, this);
+			//System.out.println("mb x" + mbappe.getX());
 			g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
 			g2d.drawImage(WB.getImg().getImage(), 400, 300, 300, 300, this);
 			if(jump){
@@ -102,10 +108,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 				jump=false;
 				checkjump = true;
 			}
-		}
+				}
 				
 			if(screen ==4){
-				background = new ImageIcon("portugal.png");
+				background = new ImageIcon("port.png");
+				g2d.drawImage(ron.getImg().getImage(), ron.getX(), ron.getY(),100, 100, this);
 				g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
 				g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
 				g2d.drawImage(WB.getImg().getImage(), 400, 300, 300, 300, this);
