@@ -1,4 +1,7 @@
+import java.awt.Rectangle;
+
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
 public class wbs {
     int x;
@@ -14,7 +17,16 @@ public class wbs {
     public void setImg(ImageIcon img) {
         this.img = img;
     }
-
+    public boolean collision(MC s) {
+		Rectangle WB = new Rectangle(s.getX(), s.getY(), s.getW(),s.getH());
+		Rectangle MC = new Rectangle(getX(), getY(), getW(), getH());
+		
+		if(WB.intersects(MC)) {
+			return true; 
+		}
+		
+		return false;
+	}
 
     public wbs() {
 		x= 1;
@@ -24,7 +36,7 @@ public class wbs {
 		img = new ImageIcon("WB.png");
 	}
 	public wbs(int xV, int yV, int wV, int hV) {
-		x = 900;
+		x = xV;
 		y= yV;
 		w = wV;
 		h = hV;
@@ -63,6 +75,14 @@ public class wbs {
     }
 
     public ImageIcon ImageIcon() {
+        return null;
+    }
+
+    public int size() {
+        return 0;
+    }
+
+    public JComponent get(int a) {
         return null;
     }
 
