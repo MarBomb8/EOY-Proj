@@ -37,12 +37,13 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		checkjump = false; 
 		jumpcoll=false;
 		jumptimer = System.currentTimeMillis();
-        screen = 4;
+        screen = 1;
         currentTime = System.currentTimeMillis()/1000;
         lvlTimer = System.currentTimeMillis();
 		mousep = new Mouse(1,1,1,1);
 		mainchar = new MC(300,300); 
 		WB = new wbs(50,200,200, 200);
+		ron = new MC(1,1,1, new ImageIcon("Ron.gif"));
 	}
 
 
