@@ -19,7 +19,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 	private ImageIcon background;
     private Long Time, startTime, startTime2, currentTime, lvlTimer, jumptimer;
     private int screen;
-	private boolean jump,checkjump;
+	private boolean jump,checkjump, jumpcoll;
 	private wbs WB;
 	
 	public Game() {
@@ -36,6 +36,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		startTime2 = System.currentTimeMillis();
 		jump = false;
 		checkjump = false; 
+		jumpcoll=false;
 		jumptimer = System.currentTimeMillis();
         screen = 1;
         currentTime = System.currentTimeMillis()/1000;
@@ -94,48 +95,25 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
-			g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
-			if(jump){
-				jumptimer = (long)0;
-				//System.out.println(jumptimer);
-				mainchar.setY(mainchar.getY()-70);
-				jump=false;
-				checkjump = true;
-			}
+			g2d.drawImage(WB.getImg().getImage(), 150, 330, 100, 300, this);
+			jumping();
 		}
 				
 			if(screen ==4){
 				background = new ImageIcon("portugal.png");
 				g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
-				g2d.drawImage(WB.getImg().getImage(), 50, 300, 300, 300, this);
-				g2d.drawImage(WB.getImg().getImage(), 400, 300, 300, 300, this);
-				if(jump){
-					jumptimer = (long)0;
-					System.out.println(jumptimer);
-					mainchar.setY(mainchar.getY()-70);
-					jump=false;
-					checkjump = true;	
-				
+				g2d.drawImage(WB.getImg().getImage(), 50, 300, 100, 300, this);
+				g2d.drawImage(WB.getImg().getImage(), 400, 300, 100, 300, this);
+				jumping();
 			}
-			if(checkjump){ 
-				jumptimer++;
-				if(jumptimer >= 100)     {
-					System.out.println(jump);
-					mainchar.setY(mainchar.getY()+70);
-					jump = false;
-					//System.out.println(jumptimer);
-					checkjump = false;
-
-		}
-			}
-		}
+		
 		
 		
 
 		
 		
 		
-		
+			move();
 		//System.out.println(jumptimer);
 		twoDgraph.drawImage(back, null, 0, 0);
 
@@ -146,7 +124,31 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		
 }
 
+public void jumping(){
+	if(jump){
+		jumptimer = (long)0;
+		System.out.println(jumptimer);
+		mainchar.setY(mainchar.getY()-370);
+		jump=false;
+		checkjump = true;	
 
+	
+}
+//System.out.println("jump" +checkjump);
+if(checkjump){ 
+	jumptimer++;
+	System.out.println(jumptimer);
+	if(jumptimer >= 100)     {
+		System.out.println(jump);
+		mainchar.setY(mainchar.getY()+370);
+		jump = false;
+		jumptimer=(long)0;
+		//System.out.println(jumptimer);
+		checkjump = false;
+
+}
+}
+}
 
 private long timer() {
     startTime = (System.currentTimeMillis()/1000)-currentTime;
@@ -167,9 +169,19 @@ private long timer() {
 		// TODO Auto-generated method stub
 		
 		key= e.getKeyCode();
+	
+	}
+	
+
+
+	public void move(){
 		System.out.println(key);
-		if(e.getKeyCode() ==68) {
-			if(!mainchar.collision(WB))
+		if(key ==68) {
+			if(jumpcoll){
+				mainchar.setX(mainchar.getX()+10);
+
+			}
+			else if(!mainchar.collision(WB))
 			mainchar.setX(mainchar.getX()+10);
 			// else if(mainchar.getX()+mainchar.getW()>= WB.getX()+WB.getW())
 			// mainchar.setX(mainchar.getX()+10);
@@ -178,28 +190,32 @@ private long timer() {
 
 
 		}
-		if(e.getKeyCode()==65) {
-			if(!mainchar.collision(WB))
+		if(key==65) {
+			if(jumpcoll){
+				mainchar.setX(mainchar.getX()-10);
+
+			}
+			else if(!mainchar.collision(WB))
 			mainchar.setX(mainchar.getX()-10);
 			// else if(mainchar.getX()<= WB.getX()+WB.getW())
 			// mainchar.setX(mainchar.getX()-10);
 			// else
 			// mainchar.setX(mainchar.getX()+1);
 		}
-		if(e.getKeyCode()==32) {
+		if(key==32) {
 			
 			System.out.println("jumping");
-			if(!jump&& !checkjump){
+			if(!jump && !checkjump){
 				jump = true;
-			
-			
+				//checkjump=true;
+				jumpcoll= mainchar.jumpcollision(WB);
 		
 	
 			
 		}
 	}
+
 	}
-	
 	//test
 
 
@@ -211,7 +227,8 @@ private long timer() {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+		jumpcoll= false;
+		key=-1;
         // TODO Auto-generated method stub
     }
     public void mouseDragged(MouseEvent arg0) {

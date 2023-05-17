@@ -118,5 +118,15 @@ public class Chars {
     }
        return false;
     }
+    public boolean jumpcollision(wbs wa){
+        Rectangle water= new Rectangle(wa.getX(), wa.getY(), wa.getW(), wa.getH());
+        Rectangle player= new Rectangle(x,y,w,h);
+ 
+        if(water.intersects(player)){
+return true;
+        }
+
+        return false;
+    }  
 
 }
