@@ -6,8 +6,8 @@ import javax.swing.JComponent;
 public class MC extends Chars{
     
 
-    public MC() {
-        super();
+    public MC(int x, int y, int dx, ImageIcon imageIcon) {
+        super(x, y, imageIcon);
     
     }
 
