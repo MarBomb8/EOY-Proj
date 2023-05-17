@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.awt.event.*; 
-
-
 import javax.swing.ImageIcon;
 
 public class Game  extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener{

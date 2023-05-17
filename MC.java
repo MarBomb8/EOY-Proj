@@ -7,7 +7,7 @@ public class MC extends Chars{
     
 
     public MC(int x, int y, int dx, ImageIcon imageIcon) {
-        super(x, y, imageIcon);
+        super(x, y, dx, dx, imageIcon);
     
     }
 
