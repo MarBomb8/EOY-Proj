@@ -35,7 +35,7 @@ public class Chars {
 		w = 30;
 		h = 30;
 		img = i;
-		dx = 0;
+		dx = 1;
 		dy = -4;
 	}
 
@@ -102,6 +102,8 @@ public class Chars {
        Rectangle player= new Rectangle(x,y,w,h);
 
        if(water.intersects(player)){
+
+
        if(wa.getX() <= x+w && wa.getX()>=x){
         setX(wa.getX()-1-w);
     
@@ -123,10 +125,39 @@ public class Chars {
         Rectangle player= new Rectangle(x,y,w,h);
  
         if(water.intersects(player)){
-return true;
+            setY(wa.getY()-getH());
+            return true;
         }
-
+        setY(300);
         return false;
     }  
+    public int charchollsion(Chars wa){
+        Rectangle water= new Rectangle(wa.getX(), wa.getY(), wa.getW(), wa.getH());
+        Rectangle player= new Rectangle(x,y,w,h);
+ 
+        if(water.intersects(player)){
+            if(wa.getY()<y-12){
+                return 1;
+            }
+            return 2;
+            
+        }
+        return 3;
+    }  
+	public void changeDx() {
+		dx = dx*-1;
+	}
+	
+	public void move(int screenW, int screenH)
+	{
+		x+=dx;
+
+		
+		if(x+w>screenW || x<0) {
+			changeDx();
+			
+		}
+		
+	}
 
 }

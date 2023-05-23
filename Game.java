@@ -44,6 +44,7 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 		mainchar = new MC(300,300); 
 		WB = new wbs(50,200,200, 200);
 		ron = new MC(1,1,1, new ImageIcon("Ron.gif"));
+		mbappe = new MC(500,300,1, new ImageIcon("Mbappe.gif"));
 	}
 
 
@@ -87,26 +88,38 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
         //g2d.drawString("" + timer(), 50, 10);
 		if (screen == 1 && timer()>= 1){
             background = new ImageIcon("boss bg.png");
-            screen = 2;
+            screen = 3;
         }
-        if (screen == 2 ){
-            background = new ImageIcon("level select.png");
-        }
+       
 		if(screen ==3){
 			background = new ImageIcon("terrain.png");
 			g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
-			g2d.drawImage(mbappe.getImg().getImage(), mbappe.getX(), mbappe.getY(),100, 130, this);
+			g2d.drawImage(mbappe.getImg().getImage(), mbappe.getX(), mbappe.getY(),120, 120, this);
+			mbappe.move(getWidth(), getHeight());
+			//g2d.drawImage(mbappe.getImg().getImage(), mbappe.getX(), mbappe.getY(),100, 130, this);
 			//System.out.println("mb x" + mbappe.getX());
 			g2d.drawImage(WB.getImg().getImage(), 150, 330, 100, 300, this);
-			jumping();
-				}
+		int checkwin= mainchar.charchollsion(mbappe);
+		switch(checkwin){
+			case 1:
+				screen = 2;
+				break;
+			case 2:
+				screen = 4;
+				break;
+		}
+		jumping();	
+			}
+			
+			if(screen == 2){
+				background = new ImageIcon("Lose.png");
 				
-			if(screen ==4){
-				background = new ImageIcon("port.png");
+			}
+				
+			if(screen == 4){
+				background = new ImageIcon("winbg.png");
 				g2d.drawImage(ron.getImg().getImage(), ron.getX(), ron.getY(),100, 100, this);
 				g2d.drawImage(mainchar.getImg().getImage(), mainchar.getX(), mainchar.getY(), 80, 100, this);
-				g2d.drawImage(WB.getImg().getImage(), 50, 300, 100, 300, this);
-				g2d.drawImage(WB.getImg().getImage(), 400, 300, 100, 300, this);
 				jumping();
 			}
 		
@@ -128,10 +141,11 @@ public class Game  extends JPanel implements Runnable, KeyListener, MouseListene
 }
 
 public void jumping(){
+	//mainchar.jumpcollision(WB);
 	if(jump){
 		jumptimer = (long)0;
 		System.out.println(jumptimer);
-		mainchar.setY(mainchar.getY()-370);
+		mainchar.setY(mainchar.getY()-90);
 		jump=false;
 		checkjump = true;	
 
@@ -142,14 +156,21 @@ if(checkjump){
 	jumptimer++;
 	System.out.println(jumptimer);
 	if(jumptimer >= 100)     {
+		if(mainchar.jumpcollision(WB)){
+			//i don't know
+		}
 		System.out.println(jump);
-		mainchar.setY(mainchar.getY()+370);
+		//mainchar.setY(mainchar.getY()+90);
 		jump = false;
+		//mainchar.setY(300);
 		jumptimer=(long)0;
 		//System.out.println(jumptimer);
 		checkjump = false;
 
 }
+// if(!jumpcoll){
+// 	mainchar.setY(300);
+// }
 }
 }
 
@@ -191,7 +212,7 @@ private long timer() {
 			// else
 			// mainchar.setX(mainchar.getX()-1);
 
-
+		
 		}
 		if(key==65) {
 			if(jumpcoll){
@@ -280,6 +301,7 @@ private long timer() {
         System.out.println("ysure");
 		if(screen == 2 && mousep.getX()>=34 && mousep.getX()<=218 && mousep.getY()>=202 && mousep.getY()<=280) {
 		screen = 3;
+		System.out.println("pressed");
 	}
 	if(screen == 2 && mousep.getX()>=34 && mousep.getX()<=222 && mousep.getY()>=436 && mousep.getY()<=516) {
 		screen = 4;
