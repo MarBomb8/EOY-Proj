@@ -136,7 +136,7 @@ public class Chars {
         Rectangle player= new Rectangle(x,y,w,h);
  
         if(water.intersects(player)){
-            if(wa.getY()<y-12){
+            if(wa.getY()<y+12){
                 return 1;
             }
             return 2;
